@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-gray-50 font-sans text-gray-900 antialiased transition-colors duration-500 dark:bg-black dark:text-white;
+    background-image:
+      radial-gradient(circle at top left, rgba(36, 172, 95, 0.08), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.05), transparent 32%);
+  }
+
+  ::selection {
+    @apply bg-brand-500/20 text-gray-900 dark:text-white;
+  }
+}
+
+@layer components {
+  .app-shell {
+    @apply min-h-screen bg-gray-50 text-gray-900 transition-colors duration-500 dark:bg-black dark:text-white;
+  }
+
+  .surface-card {
+    @apply rounded-[28px] border border-gray-200/80 bg-white/90 shadow-soft backdrop-blur-xl transition-all duration-500 dark:border-zinc-800 dark:bg-zinc-900/90 dark:shadow-[0_25px_60px_-32px_rgba(0,0,0,0.78)];
+  }
+
+  .subtle-border {
+    @apply border border-gray-200/80 dark:border-zinc-800;
+  }
+
+  .icon-button {
+    @apply flex h-11 w-11 items-center justify-center rounded-2xl border border-gray-200/80 bg-white/80 text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-100 hover:text-gray-900 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-white;
+  }
+
+  .nav-link {
+    @apply rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-900 dark:text-zinc-400 dark:hover:text-white;
+  }
+
+  .nav-link-active {
+    @apply bg-gray-900 text-white shadow-lg shadow-gray-900/15 dark:bg-white dark:text-gray-900;
+  }
+
+  .metric-card {
+    @apply rounded-[24px] border border-white/40 bg-white/15 p-4 text-white backdrop-blur-md dark:border-white/10 dark:bg-white/10;
+  }
+}

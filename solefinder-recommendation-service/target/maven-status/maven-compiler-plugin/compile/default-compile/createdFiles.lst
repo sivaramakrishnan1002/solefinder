@@ -1,0 +1,6 @@
+com\solefinder\dto\RecommendationResponse.class
+com\solefinder\SoleFinderRecommendationServiceApplication.class
+com\solefinder\controller\RecommendationController.class
+com\solefinder\dto\RecommendationRequest.class
+com\solefinder\model\Shoe.class
+com\solefinder\service\RecommendationService.class
