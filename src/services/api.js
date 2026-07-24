@@ -1,5 +1,13 @@
-export const BASE_URL =
-  import.meta.env.VITE_API_URL;
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+
+// The deployed site must receive this value from its hosting environment. Keeping
+// localhost out of the production build prevents visitors' browsers from trying
+// to call an API on their own computer.
+export const BASE_URL = configuredApiUrl
+  ? configuredApiUrl.replace(/\/$/, "")
+  : import.meta.env.DEV
+    ? "http://localhost:5000"
+    : "";
 
 function buildQueryString(params = {}) {
   const searchParams = new URLSearchParams();
@@ -17,11 +25,17 @@ function buildQueryString(params = {}) {
 }
 
 async function request(path, options = {}, fallbackMessage = "Failed to load data") {
+  if (!BASE_URL) {
+    throw new Error("The production API URL is not configured. Set VITE_API_URL and redeploy.");
+  }
+
+  const headers = { ...(options.headers || {}) };
+  if (options.body && !headers["Content-Type"]) {
+    headers["Content-Type"] = "application/json";
+  }
+
   const response = await fetch(`${BASE_URL}/api${path}`, {
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
+    headers,
     ...options,
   });
 
